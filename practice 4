@@ -1,0 +1,22 @@
+def format_user_info(name, address, postal_code):
+    # Formats the user information into a neat string
+    formatted_info = (
+        f"User Information:\n"
+        f"------------------\n"
+        f"Name: {name}\n"
+        f"Address: {address}\n"
+        f"Postal Code: {postal_code}\n"
+    )
+    return formatted_info
+
+
+if __name__ == "__main__":
+   
+    # Asking for user information
+    name = input("Please enter your name: ")
+    address = input("Please enter your address: ")
+    postal_code = input("Please enter your postal code: ")
+    
+    # Formatting and outputting the user information
+    user_info = format_user_info(name, address, postal_code)
+    print(user_info)
