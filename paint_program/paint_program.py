@@ -13,10 +13,10 @@ from wall import Wall
 SQUARE_FOOTAGE_PER_GALLON = 400
 
 paint_prices = {
-     "Premium Paint": 105,
-     "Low Odor Paint": 90, 
-     "Regular Paint": 75, 
-     "Value paint": 40 
+     1: ["Premium Paint", 105],
+     2: ["Low Odor Paint", 90], 
+     3: ["Regular Paint", 75], 
+     4: ["Value paint", 40]
     }
 
 # Add comments for the whole program
@@ -60,14 +60,31 @@ if __name__ == "__main__":
     print(f"the amount of paint you need is {round (gallons_paint, 2)} gallons")
 
     print("Here are your paint options:")
-    for i, paint_item in enumerate(paint_prices):
-        print(f"{i+1}.) {paint_item}: ${paint_prices[paint_item]} per gallon")
+    for i in range(4):
+        print(f"{i+1}.) {paint_prices[i+1][0]}: ${paint_prices[i+1][1]} per gallon")
     print("5.) Exit the program")
 
     choice = int(input("Choose from options 1 to 5: ")) # add error handling
+    if choice == 5: exit()
 
+    total_before_tax = gallons_paint * paint_prices[choice][1]
+   
+    total_after_tax = round(total_before_tax * 1.13 , 2)
 
-    
+    print(f"The total cost of your purchase will be ${round(total_before_tax, 2)} (without tax)")
+
+    print(f"The total cost of your purchase will be ${total_after_tax } (without tax)")
+
+    print(
+        "How are you paying? \n",
+        "1.) Cash \n",
+        "2.) Debit/Credit \n",
+        "3.) Exit the program"
+        )
+    choice2 = int(input("Choose from options 1 to 3: ")) # add error handling
+    if choice == 3: exit()
+    if choice == 1: get_change()
+    print_receipt()
 '''
 Choose from options 1 to 5: 2
 The total cost of your purchase will be $90 x 1 = $90 (no tax)
