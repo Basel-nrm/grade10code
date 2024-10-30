@@ -7,18 +7,7 @@ the cost of all the paint that they need and will ask for the user to choose a m
 will be printed with all the inputed information on it.
 """
 
-from utils import read_alpha, read_positive_integer
-from wall import Wall
-
-
 if __name__ == "__main__":
-   # learn regex, logical expressions, classes and methods, version control
-
-
-
-
-
-   
     while (True):
         name = str(input("What is your name?: ")).replace(" ","")
         count1 = 0

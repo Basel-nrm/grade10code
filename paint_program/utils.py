@@ -1,6 +1,6 @@
 def read_alpha(prompt: str) -> str:
-    #while (True):
-    #    alpha = str(input(prompt)).replace(" ","")
+    # while (True):
+       # alpha = str(input(prompt)).replace(" ","")
     while (alpha := str(input(prompt)).replace(" ","")):
         count1 = 0
         count2 = 0
@@ -17,7 +17,7 @@ def read_alpha(prompt: str) -> str:
             print("No symbols, only letters")
         elif count1 > 0 and count2 > 0:
             print("No symbols or numbers, only letters")
-        elif alpha == "":
+        elif alpha == " ":
             print("Enter something")
         else:
             alpha2 = alpha
