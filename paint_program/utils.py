@@ -23,7 +23,7 @@ def read_alpha(prompt: str) -> str:
             alpha2 = alpha
             break
     return alpha
-    
+
 def read_positive_integer(prompt: str) -> int:
     while (True):
         try:
@@ -36,3 +36,24 @@ def read_positive_integer(prompt: str) -> int:
         except:
             print("Only input integers, no letters, characters or decimals")
     return num
+
+def read_integer_in_range(prompt: str, num_range: range) -> int:
+    while (True):
+        try:
+            num = int(input(prompt))
+            if num in num_range: break 
+            continue
+        except:
+            print("Only input integers, no letters, characters or decimals")
+    return num
+
+def change_converter(change_due: float):
+    nums = [5000, 2000, 1000, 500, 200, 100, 25, 10, 5, 1]
+    words =  ["Fifties", "Twenties", "Tens", "Fives", "Toonies", "Loonies", "Quarters", "Dimes", "Nickels", "Pennies"]
+    change2 = int(change_due*100)
+    print ("Here is your change:")
+    for i in range(0, 10):
+        val = change2 // nums[i]
+        change2 %= nums[i]
+        if val == 0: continue
+        print(words[i], val)

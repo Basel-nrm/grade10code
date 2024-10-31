@@ -7,7 +7,7 @@ the cost of all the paint that they need and will ask for the user to choose a m
 will be printed with all the inputed information on it.
 """
 
-from utils import read_alpha, read_positive_integer
+from utils import read_alpha, read_positive_integer, change_converter
 from wall import Wall
 
 SQUARE_FOOTAGE_PER_GALLON = 400
@@ -18,6 +18,39 @@ paint_prices = {
      3: ["Regular Paint", 75], 
      4: ["Value paint", 40]
     }
+
+def pay_by_cash(total_after_tax: float) -> bool:
+    '''    
+    How much are you paying? 200
+    You paid $200, so your change will be: $200 - $101.70 = $98.30
+    Your change will be:
+    fifties: 1
+    twenties: 2
+    fives: 1
+    toonies: 1
+    loonies: 1
+    quarters: 1
+    nickels: 1
+    '''
+    while(user_payment := float(input("How much are you paying?: "))):
+        if user_payment < total_after_tax:
+            print(f"You cannot pay less than {total_after_tax}")
+        else:
+            break
+    user_change = user_payment - total_after_tax
+    print(f"You paid ${user_payment} so your change will be: ${user_payment} - ${total_after_tax} = ${round(user_change, 2)}")
+
+    change_converter(user_change) 
+    return True
+
+
+def pay_by_card() -> bool:
+    user_input = input("Please swipe your card, when done press enter")
+    return True
+
+
+def print_receipt():
+    pass
 
 # Add comments for the whole program
 
@@ -68,8 +101,8 @@ if __name__ == "__main__":
     if choice == 5: exit()
 
     total_before_tax = gallons_paint * paint_prices[choice][1]
-   
-    total_after_tax = round(total_before_tax * 1.13 , 2)
+    tax_amount = total_before_tax * 0.13
+    total_after_tax = round(total_before_tax + tax_amount , 2)
 
     print(f"The total cost of your purchase will be ${round(total_before_tax, 2)} (without tax)")
 
@@ -82,8 +115,9 @@ if __name__ == "__main__":
         "3.) Exit the program"
         )
     choice2 = int(input("Choose from options 1 to 3: ")) # add error handling
-    if choice == 3: exit()
-    if choice == 1: get_change()
+    if choice2 == 3: exit()
+    if choice2 == 1: pay_by_cash(total_after_tax)
+    if choice2 == 2: pay_by_card()
     print_receipt()
 '''
 Choose from options 1 to 5: 2

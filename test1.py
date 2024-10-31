@@ -1,27 +1,13 @@
-num_walls_to_paint = [1, 2, 3, 4, 5]
-    
-num1 = []
-for i in range (0, num_walls_to_paint):
+def read_integer_in_range(prompt: str, num_range: range) -> int:
     while (True):
         try:
-            walls_length = int(input("What is the length of your wall in feet?: ", i + 1 ))
-            if (walls_length < 0):
-                print("only input postitive numbers")
-            else:
-                break
+            num = int(input(prompt))
+            #if (num < num_range[0]) or (num > num_range[1]):
+            if num in num_range: break 
             continue
         except:
             print("Only input integers, no letters, characters or decimals")
+    return num
 
-num2 = []
-for i in range (0, num_walls_to_paint):
-    while (True):
-        try:
-            walls_width = int(input("What is the width of your wall in feet?: ", i + 1))
-            if (walls_width < 0):
-                print("only input postitive numbers")
-            else:
-                break
-            continue
-        except:
-            print("Only input integers, no letters, characters or decimals")
+x = read_positive_integer_in_range("choose option between 1 and 5: ", range (1, 6))
+print(x)
