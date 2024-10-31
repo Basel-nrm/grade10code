@@ -1,0 +1,17 @@
+
+
+*****************************************************
+BENJAMIN LISS PAINTS
+4786 Wadah street, Burlington ON, L4F 4OP
+invoice #: {random_num}
+Receiver Name: {name}
+Date: {date_val}
+Description: {paint_type}
+Quantity: {qty}
+Price per gallon: ${paint_price}
+Subtotal: ${total_before_tax}
+Tax (13%): ${tax_amount}
+Total: ${total_after_tax}
+Balance Due: $0.00
+Thank you for your business!
+****************************************************

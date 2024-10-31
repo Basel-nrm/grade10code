@@ -1,6 +1,4 @@
 def read_alpha(prompt: str) -> str:
-    # while (True):
-       # alpha = str(input(prompt)).replace(" ","")
     while (alpha := str(input(prompt)).replace(" ","")):
         count1 = 0
         count2 = 0
@@ -48,8 +46,8 @@ def read_integer_in_range(prompt: str, num_range: range) -> int:
     return num
 
 def change_converter(change_due: float):
-    nums = [5000, 2000, 1000, 500, 200, 100, 25, 10, 5, 1]
-    words =  ["Fifties", "Twenties", "Tens", "Fives", "Toonies", "Loonies", "Quarters", "Dimes", "Nickels", "Pennies"]
+    nums = [10000, 5000, 2000, 1000, 500, 200, 100, 25, 10, 5, 1]
+    words =  ["Hundreds", "Fifties", "Twenties", "Tens", "Fives", "Toonies", "Loonies", "Quarters", "Dimes", "Nickels", "Pennies"]
     change2 = int(change_due*100)
     print ("Here is your change:")
     for i in range(0, 10):

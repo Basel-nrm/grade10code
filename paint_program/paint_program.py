@@ -6,9 +6,12 @@ it will then print the different deals for paint that the user can choose from a
 the cost of all the paint that they need and will ask for the user to choose a method of purchase. After purcasing the paint, a formatted reciept 
 will be printed with all the inputed information on it.
 """
-
-from utils import read_alpha, read_positive_integer, change_converter
+from math import ceil
+import random
+from utils import (read_alpha, read_positive_integer,
+                    change_converter, read_integer_in_range)
 from wall import Wall
+from datetime import date
 
 SQUARE_FOOTAGE_PER_GALLON = 400
 
@@ -49,8 +52,10 @@ def pay_by_card() -> bool:
     return True
 
 
-def print_receipt():
-    pass
+def print_receipt(receipt_contents: dict):
+    with open('./receipt.txt') as f:
+        receipt = f.read()
+    print(receipt.format(**receipt_contents))
 
 # Add comments for the whole program
 
@@ -97,7 +102,7 @@ if __name__ == "__main__":
         print(f"{i+1}.) {paint_prices[i+1][0]}: ${paint_prices[i+1][1]} per gallon")
     print("5.) Exit the program")
 
-    choice = int(input("Choose from options 1 to 5: ")) # add error handling
+    choice = read_integer_in_range("Choose from options 1 to 5: ", range(1, 6))
     if choice == 5: exit()
 
     total_before_tax = gallons_paint * paint_prices[choice][1]
@@ -114,44 +119,20 @@ if __name__ == "__main__":
         "2.) Debit/Credit \n",
         "3.) Exit the program"
         )
-    choice2 = int(input("Choose from options 1 to 3: ")) # add error handling
+    choice2 =  read_integer_in_range("Choose from options 1 to 3: ", range(1, 4))
     if choice2 == 3: exit()
     if choice2 == 1: pay_by_cash(total_after_tax)
     if choice2 == 2: pay_by_card()
-    print_receipt()
-'''
-Choose from options 1 to 5: 2
-The total cost of your purchase will be $90 x 1 = $90 (no tax)
-The total cost of your purchase with will be $101.70 (with tax)
-How are you paying:
-1.) Cash
-2.) Debit/Credit
-3.) Exit the program
-Choose from options 1 to 3: 1
-How much are you paying? 200
-You paid $200, so your change will be: $200 - $101.70 = $98.30
-Your change will be:
-fifties: 1
-twenties: 2
-fives: 1
-toonies: 1
-loonies: 1
-quarters: 1
-nickels: 1
-Your receipt:
-*****************************************************
-SIR MIXALOT PAINT
-5353 Fake street, Burlington ON, N4C 4M2
-invoice #: 314554
-Receiver Name: Mr. Bawa
-Date: Oct, 17, 2024
-Description:` Low Odor Paint
-Quantity: 1
-Price per gallon: $90
-Subtotal: $90
-Tax (13%): $11.70
-Total: 101.70
-Balance Due: $0.00
-Thank you for your business!
-****************************************************
-'''
+    print_receipt(
+        {
+            'random_num': random.randint(1, 1000000),
+            'name': user_name,
+            'date_val': date.today(),
+            'paint_type': paint_prices[choice][0],
+            'qty': ceil(gallons_paint),
+            'paint_price': paint_prices[choice][1],
+            'total_before_tax': round(total_before_tax, 2),
+            'tax_amount': round(tax_amount, 2),
+            'total_after_tax': total_after_tax
+        }
+    )
