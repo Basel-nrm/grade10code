@@ -73,10 +73,9 @@ def print_receipt(receipt_contents: dict) -> None:
 
 
 if __name__ == "__main__":
-    # TODO: Name shouldn't except spaces or enter button
-    user_name = read_alpha("What is your name?: ")
-    #print(user_name, len(user_name))
 
+    user_name = read_alpha("What is your name?: ")
+ 
     # call a function to ask the user to input how many walls they want to paint with error handling
     num_walls = read_integer_in_range("How many walls are you willing to paint? Please enter a number between 1 and 10: ", range(1, 11))
  

@@ -17,7 +17,6 @@ def read_alpha(prompt: str) -> str:
         if re.search("^[^-\\s\\d][a-zA-Z\\s-]+$", alpha): break
     return alpha
  
-# Error handling any posititve number input
 def read_positive_integer(prompt: str) -> int:
     '''
     Reads user input as a positive integer
@@ -38,7 +37,6 @@ def read_positive_integer(prompt: str) -> int:
             print("Only input integers, no letters, characters or decimals")
     return num
 
-# TODO: figure out what this does
 def read_integer_in_range(prompt: str, num_range: range) -> int:
     '''
     Reads user input as an integer in a given range
