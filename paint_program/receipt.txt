@@ -13,5 +13,5 @@ Subtotal: ${total_before_tax}
 Tax (13%): ${tax_amount}
 Total: ${total_after_tax}
 Balance Due: $0.00
-Thank you for your business!
+Thank you for your business {name}!
 ****************************************************
