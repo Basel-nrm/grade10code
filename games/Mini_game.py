@@ -3,6 +3,7 @@
 Basel Mabroukeh
 TODO: add descrption here
 '''
+import time
 from tic_tac_toe import *
 from utils2 import *
 from RPS import rps
@@ -14,6 +15,7 @@ if __name__ == "__main__":
 
     while True:
         a = '💎'
+        clearscreen()
         print("\t ",a, a, a, a, a, a, a, a, a, a, a)
         print("""\t Welcome to Basel Mini Games
             1.) RPS
@@ -35,6 +37,6 @@ if __name__ == "__main__":
             print("Thank you for using my program")
             exit()
         else:
-            clearscreen()
             print("Enter 1 to 4 only please!")
-        clearscreen()
+            time.sleep(2)
+

@@ -20,21 +20,31 @@ answers = {1:('rock', [3]),
         3:('scissors', [2])}
 
 def determine_winner(player1_answer: int, player2_answer: int) -> list[int, int]:
-    print("Player 1 answer is ", answers[player1_answer][0])
-    print("Player 2 answer is ", answers[player2_answer][0])
+    #print("Player 1 answer is ", answers[player1_answer][0])
+    #print("Player 2 answer is ", answers[player2_answer][0])
+    
     if player1_answer == player2_answer: 
-        print("It's a tie, you both score!")
+        print("\nIt's a tie, you both score!")
         return [1,1]
     if player2_answer in answers[player1_answer][1]:
-        print("Player 1 wins !")
+        print("\nPlayer 1 wins this round!")
         return [1,0]
-    print("Player 2 wins !")
+    print("\nPlayer 2 wins this round!")
     return [0,1]
 
+def print_score_board(scores: list, p1answer: int, p2answer:int):
+   print(f'''
+    player 1\t\tplayer 2
+    --------\t\t--------
+    score: {scores[0]}\t\tscore:{scores[1]}
+    answer: {answers[p1answer][0]}\tanswer: {answers[p2answer][0]}
+    ''')
+   
 def rps():
 
     #initializes the scores when program is called
     while True:
+        clearscreen()
         print("""\t\t Welcome to RPS
             1.) 1 player option
             2.) 2 player option
@@ -54,5 +64,6 @@ def rps():
                 player2_answer = read_integer_in_range("\033[31mPlayer 2\033[0m, Type 1 for rock, 2 for paper or 3 for scissors: ", range(1, 4))
             score_increments = determine_winner(player1_answer, player2_answer)
             scores = np.array(scores) + np.array(score_increments)  # array addition 
-            print(f"Player 1 score: {scores[0]}\nPlayer 2 score: {scores[1]}")
+            #print(f"Player 1 score: {scores[0]}\nPlayer 2 score: {scores[1]}")
+            print_score_board(scores, player1_answer, player2_answer)
             if not play_again(): break
