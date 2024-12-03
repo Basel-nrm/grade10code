@@ -3,10 +3,6 @@
 Basel Mabroukeh
 TODO: add descrption here
 '''
-# TODO: isntead of multiple sentences containing info on player 1 and two, make a formatted block of info for each player e.g: 
-# player 1          player 2
-# score: 1          score:1
-# answer: rock      answer: rock
 
 import random
 import numpy as np
@@ -63,7 +59,6 @@ def rps():
             if choice == 2:
                 player2_answer = read_integer_in_range("\033[31mPlayer 2\033[0m, Type 1 for rock, 2 for paper or 3 for scissors: ", range(1, 4))
             score_increments = determine_winner(player1_answer, player2_answer)
-            scores = np.array(scores) + np.array(score_increments)  # array addition 
-            #print(f"Player 1 score: {scores[0]}\nPlayer 2 score: {scores[1]}")
+            scores = np.array(scores) + np.array(score_increments)  # array addition, ref: https://stackoverflow.com/questions/58090632/numpy-add-with-multiple-arrays
             print_score_board(scores, player1_answer, player2_answer)
             if not play_again(): break

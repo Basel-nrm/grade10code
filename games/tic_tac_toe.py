@@ -39,7 +39,7 @@ def playerInput(board):
                     board[choice - 1] = player2
                     turns += 1
                     break
-            elif choice > 9 or choice < 0:
+            elif choice > 9 or choice <= 0:
                 print("\nOnly input values between 1 and 9")
             else:
                 print("\nSpot has already been occupied\n")

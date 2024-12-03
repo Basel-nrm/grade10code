@@ -9,7 +9,6 @@ from utils2 import *
 from RPS import rps
 from highlow_guessing_game import highlow
 
-#TODO: remove clearscreen and add error statement after inputing something other than 1-4
 
 if __name__ == "__main__":
 
@@ -38,5 +37,5 @@ if __name__ == "__main__":
             exit()
         else:
             print("Enter 1 to 4 only please!")
-            time.sleep(2)
+            time.sleep(2)  # ref: https://stackoverflow.com/questions/510348/how-do-i-make-a-time-delay
 

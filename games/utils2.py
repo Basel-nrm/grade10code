@@ -1,14 +1,7 @@
-import time
 import os 
 
-def loading():
-    print("loading", end="")
-    for i in range(0, 4):
-        print(".", end="")
-        time.sleep(0.5)
-
 def clearscreen():
-    os.system("cls")
+    os.system("cls")  # ref: https://www.geeksforgeeks.org/clear-screen-python/
 
 def read_integer_in_range(prompt: str, num_range: range) -> int:
     '''
