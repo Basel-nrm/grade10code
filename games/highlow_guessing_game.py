@@ -1,9 +1,19 @@
+'''
+11/21/2024
+Basel Mabroukeh
+This is a high low guessing game program that asks the user to input which difficulty level they wish to play and randomizes a number
+within the range that the difficulty level provides. The program then asks the user to guess the number and notifies the user wether
+their guess was higher or lower than the random number until the user runs out of guesses or guesses the random number right.
+'''
+
 import random
 from utils2 import play_again, read_integer_in_range, clearscreen
 
-
 def highlow():
-
+    '''
+    This function asks for the player's choice of difficulty and then runs the game based on that input. It then provides information 
+    on how the game works and reads the player's input and tells them if their guess is higher or lower than the randomized number.
+    '''
     while True:
         clearscreen()
         diff_lvl = read_integer_in_range("Choose difficulty by inputing 1 for \033[32measy\033[0m, 2 for \033[33mmedium\033[0m, and 3 for \033[31mhard\033[0m: ", range(1, 4))

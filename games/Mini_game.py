@@ -1,8 +1,10 @@
 '''
 11/21/2024
 Basel Mabroukeh
-TODO: add descrption here
+This program displays a list of games and asks you to input a number based on the game you would like to play 
+or if you wish to exit the program. It then reads your input and sends you to the game you have chosen.
 '''
+
 import time
 from tic_tac_toe import *
 from utils2 import *
@@ -12,6 +14,7 @@ from highlow_guessing_game import highlow
 
 if __name__ == "__main__":
 
+    # Displays all the options of games that you may choose.
     while True:
         a = '💎'
         clearscreen()
@@ -24,6 +27,7 @@ if __name__ == "__main__":
             Choose one of the following options
         """)
         print("\t ",a, a, a, a, a, a, a, a, a, a, a)
+        # Asks for an input and sends you to the game you have chosen based on your input.
         choice = str(input("Please choose from options 1 to 4: "))
         clearscreen()
         if choice == "1":

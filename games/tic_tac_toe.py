@@ -1,28 +1,40 @@
 '''
 11/21/2024
 Basel Mabroukeh
-TODO: add descrption here
+This is a tic tac toe game program. This program creates a tic tac toe board and then asks the user which cell they wish to
+put an X or an O in. The program then keeps reading the board until it finds a player who has gotten 3 X's or O's in a row 
+and labels them as the winner.
 '''
-
 
 #prints the sample board
 def sampleBoard():
+    '''
+    Creates and prints a sample board to show the number of each cell.
+    '''
     print("\n1 | 2 | 3")
     print("----------")
     print("4 | 5 | 6")
     print("----------")
     print("7 | 8 | 9\n\n")
 
-#prints the board
-def printBoard(board):
+def printBoard(board: list):
+    '''
+    Args:
+        board (list): Prints the tic tac toe board layout.
+
+    '''
     print(board[0] + " | " + board[1] + " | " + board[2])
     print("----------")
     print(board[3] + " | " + board[4] + " | " + board[5])
     print("----------")
     print(board[6] + " | " + board[7] + " | " + board[8])
 
-#allows the player1 & player2 to input into a spot
-def playerInput(board):
+def playerInput(board: list):
+    '''
+    Allows the player1 & player2 to input into a spot
+    Args:
+        board (list): The tic tac toe board layout.
+    '''
     global turns, player1, player2
     player1 = "\033[31mX\033[0m"
     player2 = "\033[34mO\033[0m"
@@ -46,8 +58,12 @@ def playerInput(board):
         except:
             print("Only integer input")
 
-#checks to see if there is a winner horizontally
-def checkHorizontal(board):
+def checkHorizontal(board: list):
+    '''
+    Checks to see if there is a winner horizontally
+    Args:
+        board (list): The tic tac toe board layout.
+    '''
     global winner
     if board[0] == board[1] == board[2] and board[0]!= "-":
         winner = board[0]
@@ -59,8 +75,12 @@ def checkHorizontal(board):
         winner = board[6]
         return True
 
-#checks to see if there is a winner vertically
-def checkVertical(board):
+def checkVertical(board: list):
+    '''
+    Checks to see if there is a winner vertically
+    Args:
+        board (list): The tic tac toe board layout.
+    '''
     global winner
     if board[0] == board[3] == board[6] and board[0]!= "-":
         winner = board[0]
@@ -72,8 +92,12 @@ def checkVertical(board):
         winner = board[2]
         return True
 
-#checks to see if there is a winner vertically
-def checkDiagonal(board):
+def checkDiagonal(board: list):
+    '''
+    Checks to see if there is a winner vertically
+    Args:
+        board (list): The tic tac toe board layout.
+    '''
     global winner
     if board[0] == board[4] == board[8] and board[0]!= "-":
         winner = board[0]
@@ -82,24 +106,30 @@ def checkDiagonal(board):
         winner = board[2]
         return True
 
-#checks to see if nobody wins and there is a tie
 def checkTie():
+    '''
+    Checks to see if nobody wins and there is a tie
+    '''
     global gameRunning
     if turns == 9 and not checkDiagonal(board) and not checkVertical(board) and not checkHorizontal(board):
         printBoard(board)
         print("Its a tie!")
         gameRunning = False
 
-#checks the diagonals, verticals and horizontals to see if there is a win
 def checkWin():
+    '''
+    Checks the diagonals, verticals and horizontals to see if there is a win
+    '''
     global gameRunning
     if checkHorizontal(board) or checkVertical(board) or checkDiagonal(board):
         printBoard(board)
         print(f"The winner is {winner}")
         gameRunning = False
 
-#this is the loop that will run the game
 def tictactoe():
+    '''
+    This is the loop that will run the game
+    '''
     global board, gameRunning, winner, turns
     #this is a 1D list/arry for the board
     board = ["-","-","-",

@@ -1,7 +1,9 @@
 '''
 11/21/2024
 Basel Mabroukeh
-TODO: add descrption here
+This is a rock, paper, scissors, game program that asks the user if the want to play against the computer or if they want to play
+against another player. It then aks the user to input 1 for rock, 2 for paper, and 3 for scissors and then compares the player's answer
+to the computer or other player's answer and determines who the winner is while printing out both of the player's information.
 '''
 
 import random
@@ -9,16 +11,21 @@ import numpy as np
 from utils2 import read_integer_in_range, play_again, clearscreen
 
 
-# look up table of answers, the list next to each answer represents what looses to that answer
-# for example scissors looses to rock so 3 is in the list of loosers for answer 1
+# A look up table of answers, the list next to each answer represents what looses to that answer
+# For example scissors looses to rock so 3 is in the list of loosers for answer 1
 answers = {1:('rock', [3]),
         2:('paper', [1]), 
         3:('scissors', [2])}
 
 def determine_winner(player1_answer: int, player2_answer: int) -> list[int, int]:
-    #print("Player 1 answer is ", answers[player1_answer][0])
-    #print("Player 2 answer is ", answers[player2_answer][0])
-    
+    '''
+    Determines who is winning any given round by comparing the answers of each player.
+    Args:
+        player1_answer (int): First player's answer as an integer code as shown in the 'answers' dictionary.
+        player2_answer (int): Second player's answer as an integer code as shown in the 'answers' dictionary.
+    Returns:
+        list [int, int]: A list representing the score for both players in the given round
+    '''    
     if player1_answer == player2_answer: 
         print("\nIt's a tie, you both score!")
         return [1,1]
@@ -29,7 +36,14 @@ def determine_winner(player1_answer: int, player2_answer: int) -> list[int, int]
     return [0,1]
 
 def print_score_board(scores: list, p1answer: int, p2answer:int):
-   print(f'''
+    '''
+    Prints the information about both players depending in any given round.
+    Args:
+        scores (list): A list representing the score for both players in the given round
+        p1answer (int): The answer the first player chose
+        p2answer (int): The answer the second player chose
+    '''
+    print(f'''
     player 1\t\tplayer 2
     --------\t\t--------
     score: {scores[0]}\t\tscore:{scores[1]}
@@ -37,7 +51,9 @@ def print_score_board(scores: list, p1answer: int, p2answer:int):
     ''')
    
 def rps():
-
+    '''
+    This is the loop that will run the game.
+    '''
     #initializes the scores when program is called
     while True:
         clearscreen()

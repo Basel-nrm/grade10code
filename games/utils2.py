@@ -1,6 +1,15 @@
+'''
+11/21/2024
+Basel Mabroukeh
+This is a utility library for generic functions.
+'''
+
 import os 
 
 def clearscreen():
+    '''
+    Clears the screen based on the operating system.
+    '''
     os.system("cls")  # ref: https://www.geeksforgeeks.org/clear-screen-python/
 
 def read_integer_in_range(prompt: str, num_range: range) -> int:
