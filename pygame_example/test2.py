@@ -6,16 +6,17 @@ import random
 
 def game():
     counter = 0
+    life_counter = 3
     #importing the game screen
     import test1
     #this creates a window 600 pixels wide by 400 pixels high
     window1 = pygame.display.set_mode((600, 400))
 
-    #sets the caption in the left cover of the window
-    pygame.display.set_caption("Game")
+    #sets the caption in the left corner of the window
+    pygame.display.set_caption("Burger Rush")
     
     #loads the fat guy image & starting position of image
-    fatguy = pygame.image.load("fatguy.png")
+    fatguy = pygame.image.load("pygame_example/fatguy.png")
     
     #initial position of the fat guy
     x = 0
@@ -23,19 +24,17 @@ def game():
     #initial position of the burger
     y1 = 0
     x1 = random.randint(30, 570)
+    #initial position of the medkit
+    y2 = 0
+    x2 = random.randint(30, 570)
 
-    #loads the burger image 
-    burger = pygame.image.load("burger.png")
-    rect1 = fatguy.get_rect()
-    rect2 = burger.get_rect()
-   # rect3 = garbage.get_rect()
-    
-    '''
-    medkit = pygame.image.load("medkit.png")
+    #loads the burger and medkit image 
+    medkit = pygame.image.load("pygame_example/medkit.png")
+    burger = pygame.image.load("pygame_example/burger.png")
     rect1 = fatguy.get_rect()
     rect2 = burger.get_rect()
     rect3 = medkit.get_rect()
-    '''
+    
     #the fat guy starts not moving
     to_right = False
     to_left = False
@@ -46,28 +45,48 @@ def game():
 
     while True:
         #loads the background image
-        bg = pygame.image.load("background1.png")
+        bg = pygame.image.load("pygame_example/background1.png")
         window1.blit(bg, (0, 0))
         #score
         font1 = pygame.font.SysFont("Times New Roman", 30)
-        text1 = font1.render("Score: "+ str(counter), True, (36, 38, 37))
+        text1 = font1.render("Score: "+ str(counter), True, (36, 38, 37), (255, 155, 255))
         window1.blit(text1,(10, 5))
+        #lives
+        font1 = pygame.font.SysFont("Times New Roman", 30)
+        text1 = font1.render("Lives: "+ str(life_counter), True, (36, 38, 37), (255, 155, 255))
+        window1.blit(text1,(485, 5))
 
-        #gets the rectangle around the fat guy and the burger
+
+        #gets the rectangle around the fat, burger, and medkit
         rectangle1 = pygame.Rect(x, y, fatguy.get_width(), fatguy.get_height())
         rectangle2 = pygame.Rect(x1, y1, burger.get_width(), burger.get_height())
-       #rectangle3 = pygame.Rect(x2, y2, garbage.get width(), burger.get_height())
+        rectangle3 = pygame.Rect(x2, y2, medkit.get_width(), medkit.get_height())
         #returns true if the 2 rectangles overlap with each other
         if rectangle1.colliderect(rectangle2):
             y1 = 0
             x1 = random.randint(30, 570)
             counter += 1
+        if rectangle1.colliderect(rectangle3):
+            y2 = 0
+            x2 = random.randint(30, 570)
+            if life_counter < 5: life_counter += 1
 
-        #if the burger reaches 
+        #if the burger reaches the ground, the player loses a life and the burger drops from the top again
         if y1 == 400:
             y1 = 0
             x1 = random.randint(30, 570)
+            if life_counter <= 0: 
+                pygame.time.wait(3000)
+                pygame.quit()
+                exit()
+            life_counter -= 1
         y1 += 4
+        #if the medkit reaches the ground, it drops from the top again
+        if y2 == 400:
+            y2 = 0
+            x2 = random.randint(30, 570)
+        y2 += 10
+
         for event in pygame.event.get():
             #controls for when pressing the key down
             if event.type == pygame.KEYDOWN:
@@ -128,7 +147,7 @@ def game():
             y = 0 
         if y+fatguy.get_height() >= 400:
             y = 400 - fatguy.get_height()
-
+        
         #if left or right arrow is pressed, moves fat guy 2 pixels left or right
         if to_right:
             x += 5
@@ -145,7 +164,8 @@ def game():
         window1.blit(text2, (440, 355))
         window1.blit(fatguy,(x, y))
         window1.blit(burger, (x1, y1))
+        #makes the medkit stop appearing if the player has 5 lives
+        if life_counter < 5: window1.blit(medkit, (x2, y2))
         pygame.display.flip()
         clock.tick(60)
-
 game()

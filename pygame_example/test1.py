@@ -7,21 +7,16 @@ pygame.init()
 Name: Basel Mabroukeh
 Date: 
 Description:
-Resources: Stack Overflow, 
+Resources: Stack Overflow, my dad 
 '''
-# TODO: make everything faster every 25 points
 # TODO: make character have the ability to jump
-# TODO: make character have limited lives that he loses when he gets hit by garbage
 # TODO: make garbage drop at the same time as the burger but faster than medkit
-# TODO: make 3 peices of garbage fall each time
-# TODO: make the medkit bring back one life if collected and make it fall at the same time as the burger but at a faster rate
 # TODO: remove boxes around text on the menu
-# TODO: make area to show game controls and explain aspects of the game
+# TODO: make area to show game controls and explain aspects of the game in the help area
 # TODO: make score, play again button, main menu button, and help button pop up on another screen when you lose
-# TODO: add help information
-
-
-def main_screen():
+# TODO: fix pause music button hit box
+# TODO: make the lives into heart images
+def main():
 
     #this creates a window 600 pixels wide by 400 pixels high
     window = pygame.display.set_mode((600, 400))
@@ -31,13 +26,15 @@ def main_screen():
     pygame.display.set_caption("menu")
 
     #loads the background image
-    bg = pygame.image.load("background4.png")
+    bg = pygame.image.load("pygame_example/background4.png")
     window.blit(bg, (0, 0))
 
     #this creates the text for the title
-    font1 = pygame.font.SysFont("Times New Roman", 60)
-    text1 = font1.render("Fatilicious", True, (36, 38, 37))
-    window.blit(text1,(145, 20))
+    font1 = pygame.font.SysFont("Arial", 60, bold=True)
+    text1 = font1.render("Burger Rush", True, (36, 38, 37))
+    text1_1 = font1.render("Burger Rush", True, (255, 0, 0))
+    window.blit(text1,(125, 20))
+    window.blit(text1_1,(130, 22))
     while True:
         #gets the current position of the mouse on the screen
         mouse = pygame.mouse.get_pos()
@@ -64,7 +61,7 @@ def main_screen():
                    sys.exit()
                #if you click on the play music button, it plays the music
                if 575 > mouse[0] > 425 and 300 > mouse[1] > 250:
-                   pygame.mixer.music.load('AmongUs.mp3')
+                   pygame.mixer.music.load('pygame_example/AmongUs.mp3')
                    pygame.mixer.music.play()
                #if you click on the pause music button, it pauses the music
                if 575 > mouse[0] > 425 and 410 > mouse[1] > 350:
@@ -111,23 +108,23 @@ def main_screen():
             text5 = font5.render("Play Music", True, (235, 12, 45))
 
         #if you hover over the pause button it turns green, otherwise it is grey
-        if 575 > mouse[0] > 425 and 410 > mouse[1] > 350:
-            pause_button = pygame.draw.rect(window, (141, 183, 247), [425, 350, 160, 50])
-            font6 = pygame.font.SysFont("Times New Roman", 30)
+        if 575 > mouse[0] > 425 and 410 > mouse[1] > 310:
+            pause_button = pygame.draw.rect(window, (141, 183, 247), [425, 310, 150, 50])
+            font6 = pygame.font.SysFont("Times New Roman", 28)
             text6 = font6.render("Pause Music", True, (235, 12, 45))
         else:
-            pause_button = pygame.draw.rect(window, (141*0.65, 183*0.65, 247*0.65), [425, 350, 160, 50])
-            font6 = pygame.font.SysFont("Times New Roman", 30)
+            pause_button = pygame.draw.rect(window, (141*0.65, 183*0.65, 247*0.65), [425, 310, 150, 50])
+            font6 = pygame.font.SysFont("Times New Roman", 28)
             text6 = font6.render("Pause Music", True, (235, 12, 45))
 
         #prints everything to the window
-        window.blit(text2, (200, 135))
-        window.blit(text3, (200, 235))
-        window.blit(text4, (200, 335))
-        window.blit(text5, (425, 250))
-        window.blit(text6, (425, 350))
+        window.blit(text2, (250, 135))
+        window.blit(text3, (250, 235))
+        window.blit(text4, (250, 335))
+        window.blit(text5, (425, 255))
+        window.blit(text6, (425, 315))
         pygame.display.flip()
 
 
 # start here
-main_screen()
+main()
