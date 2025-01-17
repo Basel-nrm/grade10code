@@ -7,14 +7,14 @@ import random
 def game():
     counter = 0
     life_counter = 3
-    #importing the game screen
-    import test1
     #this creates a window 600 pixels wide by 400 pixels high
     window1 = pygame.display.set_mode((600, 400))
 
     #sets the caption in the left corner of the window
     pygame.display.set_caption("Burger Rush")
     
+    import game_over
+    import test1
     #loads the fat guy image & starting position of image
     fatguy = pygame.image.load("pygame_example/fatguy.png")
     
@@ -56,7 +56,6 @@ def game():
         text1 = font1.render("Lives: "+ str(life_counter), True, (36, 38, 37), (255, 155, 255))
         window1.blit(text1,(485, 5))
 
-
         #gets the rectangle around the fat, burger, and medkit
         rectangle1 = pygame.Rect(x+10, y, fatguy.get_width()-30, fatguy.get_height())
         rectangle2 = pygame.Rect(x1, y1, burger.get_width(), burger.get_height())
@@ -78,7 +77,7 @@ def game():
             life_counter -= 1
             if life_counter <= 0: 
                 pygame.time.wait(1000)
-                gameover()
+                game_over.main()
         y1 += 4
         #if the medkit reaches the ground, it drops from the top again
         if y2 == 400:
