@@ -58,7 +58,7 @@ def game():
 
 
         #gets the rectangle around the fat, burger, and medkit
-        rectangle1 = pygame.Rect(x, y, fatguy.get_width(), fatguy.get_height())
+        rectangle1 = pygame.Rect(x+10, y, fatguy.get_width()-30, fatguy.get_height())
         rectangle2 = pygame.Rect(x1, y1, burger.get_width(), burger.get_height())
         rectangle3 = pygame.Rect(x2, y2, medkit.get_width(), medkit.get_height())
         #returns true if the 2 rectangles overlap with each other
@@ -69,17 +69,16 @@ def game():
         if rectangle1.colliderect(rectangle3):
             y2 = 0
             x2 = random.randint(30, 570)
-            if life_counter < 5: life_counter += 1
+            if life_counter < 3: life_counter += 1
 
         #if the burger reaches the ground, the player loses a life and the burger drops from the top again
         if y1 == 400:
             y1 = 0
             x1 = random.randint(30, 570)
-            if life_counter <= 0: 
-                pygame.time.wait(3000)
-                pygame.quit()
-                exit()
             life_counter -= 1
+            if life_counter <= 0: 
+                pygame.time.wait(1000)
+                gameover()
         y1 += 4
         #if the medkit reaches the ground, it drops from the top again
         if y2 == 400:
@@ -123,10 +122,10 @@ def game():
                if 590 > mouse[0] > 440 and 400 > mouse[1] > 350:
                    test1.main()
                    
-        #this gets the current position of the mouse
+        # this gets the current position of the mouse
         mouse = pygame.mouse.get_pos()
 
-        #if you hover over the main menu button it turns green, otherwise it is grey
+        # if you hover over the main menu button it turns green, otherwise it is grey
         if 590 > mouse[0] > 440 and 400 > mouse[1] > 350:
             play_button = pygame.draw.rect(window1, "green", [440, 350, 150, 50])
             font2 = pygame.font.SysFont("Times New Roman", 30)
@@ -136,36 +135,36 @@ def game():
             font2 = pygame.font.SysFont("Times New Roman", 30)
             text2 = font2.render("Main Menu", True, (235, 12, 45))
         
-        #keeps the fat guy from going off the left or right of the screen
+        # keeps the fat guy from going off the left or right of the screen
         if x+fatguy.get_width() <= fatguy.get_width():
             x = 0 
         if x+fatguy.get_width() >= 600:
             x = 600 - fatguy.get_width()
         
-        #keeps the fat guy from going off the top or bottom of the screen
+        # keeps the fat guy from going off the top or bottom of the screen
         if y+fatguy.get_height() <= fatguy.get_height():
             y = 0 
         if y+fatguy.get_height() >= 400:
             y = 400 - fatguy.get_height()
         
-        #if left or right arrow is pressed, moves fat guy 2 pixels left or right
+        # if left or right arrow is pressed, moves fat guy 2 pixels left or right
         if to_right:
-            x += 5
+            x += 7
         if to_left:
-            x -= 5
-        #if up or down arrow is pressed, moves fat guy 2 pixels up or down
+            x -= 7
+        # if up or down arrow is pressed, moves fat guy 2 pixels up or down
         '''
         if to_down:
             y += 5
         if to_up:
             y -= 5
         '''
-        #prints everything to the window
+        # prints everything to the window
         window1.blit(text2, (440, 355))
         window1.blit(fatguy,(x, y))
         window1.blit(burger, (x1, y1))
-        #makes the medkit stop appearing if the player has 5 lives
-        if life_counter < 5: window1.blit(medkit, (x2, y2))
+        # makes the medkit stop appearing if the player has 3 lives
+        if life_counter < 3: window1.blit(medkit, (x2, y2))
         pygame.display.flip()
         clock.tick(60)
 game()

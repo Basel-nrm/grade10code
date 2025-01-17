@@ -16,6 +16,8 @@ Resources: Stack Overflow, my dad
 # TODO: make score, play again button, main menu button, and help button pop up on another screen when you lose
 # TODO: fix pause music button hit box
 # TODO: make the lives into heart images
+# TODO: add sound to when burger, medkit, and garbage are collected and when you lose a life
+
 def main():
 
     #this creates a window 600 pixels wide by 400 pixels high
