@@ -7,6 +7,7 @@ import random
 def game():
     counter = 0
     life_counter = 3
+    character_speed = 7
     #this creates a window 600 pixels wide by 400 pixels high
     window1 = pygame.display.set_mode((600, 400))
 
@@ -29,11 +30,11 @@ def game():
     x2 = random.randint(30, 570)
 
     #loads the burger and medkit image 
-    medkit = pygame.image.load("pygame_example/medkit.png")
+    broccoli = pygame.image.load("pygame_example/broccoli_scaled_nobkg.png")
     burger = pygame.image.load("pygame_example/burger.png")
     rect1 = fatguy.get_rect()
     rect2 = burger.get_rect()
-    rect3 = medkit.get_rect()
+    rect3 = broccoli.get_rect()
     
     #the fat guy starts not moving
     to_right = False
@@ -59,16 +60,18 @@ def game():
         #gets the rectangle around the fat, burger, and medkit
         rectangle1 = pygame.Rect(x+10, y, fatguy.get_width()-30, fatguy.get_height())
         rectangle2 = pygame.Rect(x1, y1, burger.get_width(), burger.get_height())
-        rectangle3 = pygame.Rect(x2, y2, medkit.get_width(), medkit.get_height())
+        rectangle3 = pygame.Rect(x2, y2, broccoli.get_width(), broccoli.get_height())
         #returns true if the 2 rectangles overlap with each other
         if rectangle1.colliderect(rectangle2):
             y1 = 0
             x1 = random.randint(30, 570)
             counter += 1
+            character_speed -= 1 if counter % 2 == 0 else 0 
         if rectangle1.colliderect(rectangle3):
             y2 = 0
             x2 = random.randint(30, 570)
             if life_counter < 3: life_counter += 1
+            character_speed += 1 if counter % 2 == 0 else 0 
 
         #if the burger reaches the ground, the player loses a life and the burger drops from the top again
         if y1 == 400:
@@ -77,13 +80,13 @@ def game():
             life_counter -= 1
             if life_counter <= 0: 
                 pygame.time.wait(1000)
-                game_over.main()
-        y1 += 4
-        #if the medkit reaches the ground, it drops from the top again
+                game_over.main(counter)
+        y1 += 5
+        #if the broccoli reaches the ground, it drops from the top again
         if y2 == 400:
             y2 = 0
             x2 = random.randint(30, 570)
-        y2 += 10
+        y2 += 8
 
         for event in pygame.event.get():
             #controls for when pressing the key down
@@ -148,9 +151,9 @@ def game():
         
         # if left or right arrow is pressed, moves fat guy 2 pixels left or right
         if to_right:
-            x += 7
+            x += character_speed
         if to_left:
-            x -= 7
+            x -= character_speed
         # if up or down arrow is pressed, moves fat guy 2 pixels up or down
         '''
         if to_down:
@@ -163,7 +166,7 @@ def game():
         window1.blit(fatguy,(x, y))
         window1.blit(burger, (x1, y1))
         # makes the medkit stop appearing if the player has 3 lives
-        if life_counter < 3: window1.blit(medkit, (x2, y2))
+        if life_counter < 3: window1.blit(broccoli, (x2, y2))
         pygame.display.flip()
         clock.tick(60)
 game()

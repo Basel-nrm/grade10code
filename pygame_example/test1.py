@@ -11,10 +11,7 @@ Resources: Stack Overflow, my dad
 '''
 # TODO: make character have the ability to jump
 # TODO: make garbage drop at the same time as the burger but faster than medkit
-# TODO: remove boxes around text on the menu
-# TODO: make area to show game controls and explain aspects of the game in the help area
 # TODO: make score, play again button, main menu button, and help button pop up on another screen when you lose
-# TODO: fix pause music button hit box
 # TODO: make the lives into heart images
 # TODO: add sound to when burger, medkit, and garbage are collected and when you lose a life
 
@@ -66,7 +63,7 @@ def main():
                    pygame.mixer.music.load('pygame_example/AmongUs.mp3')
                    pygame.mixer.music.play()
                #if you click on the pause music button, it pauses the music
-               if 575 > mouse[0] > 425 and 410 > mouse[1] > 350:
+               if 575 > mouse[0] > 425 and 410 > mouse[1] > 310:
                    pygame.mixer.music.pause()
                    
         #if you hover over the play button it turns green, otherwise it is grey
