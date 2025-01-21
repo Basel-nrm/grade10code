@@ -25,17 +25,23 @@ def game():
     #initial position of the burger
     y1 = 0
     x1 = random.randint(30, 570)
-    #initial position of the medkit
+    #initial position of the broccoli
     y2 = 0
     x2 = random.randint(30, 570)
+    #initial position of the asteroid
+    y3 = 0
+    x3 = random.randint(30, 570)
 
     #loads the burger and medkit image 
     broccoli = pygame.image.load("pygame_example/broccoli_scaled_nobkg.png")
     burger = pygame.image.load("pygame_example/burger.png")
-    rect1 = fatguy.get_rect()
-    rect2 = burger.get_rect()
-    rect3 = broccoli.get_rect()
-    
+    asteroid = pygame.image.load("pygame_example/asteroid.png")
+    """
+    fatguy_rect = fatguy.get_rect()
+    burger_rect = burger.get_rect()
+    broccoli_rect = broccoli.get_rect()
+    asteroid_rect = asteroid.get_rect()
+    """
     #the fat guy starts not moving
     to_right = False
     to_left = False
@@ -58,20 +64,28 @@ def game():
         window1.blit(text1,(485, 5))
 
         #gets the rectangle around the fat, burger, and medkit
-        rectangle1 = pygame.Rect(x+10, y, fatguy.get_width()-30, fatguy.get_height())
-        rectangle2 = pygame.Rect(x1, y1, burger.get_width(), burger.get_height())
-        rectangle3 = pygame.Rect(x2, y2, broccoli.get_width(), broccoli.get_height())
+        fatguy_surface = pygame.Rect(x+10, y, fatguy.get_width()-30, fatguy.get_height())
+        burger_surface = pygame.Rect(x1, y1, burger.get_width(), burger.get_height())
+        broccoli_surface = pygame.Rect(x2, y2, broccoli.get_width(), broccoli.get_height())
+        asteroid_surface = pygame.Rect(x3, y3, asteroid.get_width(), asteroid.get_height())
         #returns true if the 2 rectangles overlap with each other
-        if rectangle1.colliderect(rectangle2):
+        if fatguy_surface.colliderect(burger_surface):
             y1 = 0
             x1 = random.randint(30, 570)
             counter += 1
             character_speed -= 1 if counter % 2 == 0 else 0 
-        if rectangle1.colliderect(rectangle3):
+        if fatguy_surface.colliderect(broccoli_surface):
             y2 = 0
             x2 = random.randint(30, 570)
             if life_counter < 3: life_counter += 1
             character_speed += 1 if counter % 2 == 0 else 0 
+        if fatguy_surface.colliderect(asteroid_surface):
+            y3 = 0
+            x3 = random.randint(30, 570)
+            life_counter -= 1
+            if life_counter <= 0: 
+                pygame.time.wait(1000)
+                game_over.main(counter)
 
         #if the burger reaches the ground, the player loses a life and the burger drops from the top again
         if y1 == 400:
@@ -87,6 +101,11 @@ def game():
             y2 = 0
             x2 = random.randint(30, 570)
         y2 += 8
+        #if the asteroid reaches the ground, it drops from the top again
+        if y3 == 400:
+            y3 = 0
+            x3 = random.randint(30, 570)
+        y3 += 6
 
         for event in pygame.event.get():
             #controls for when pressing the key down
@@ -163,10 +182,11 @@ def game():
         '''
         # prints everything to the window
         window1.blit(text2, (440, 355))
-        window1.blit(fatguy,(x, y))
+        window1.blit(fatguy, (x, y))
         window1.blit(burger, (x1, y1))
-        # makes the medkit stop appearing if the player has 3 lives
+        # makes the broccoli stop appearing if the player has 3 lives
         if life_counter < 3: window1.blit(broccoli, (x2, y2))
+        window1.blit(asteroid, (x3, y3))
         pygame.display.flip()
         clock.tick(60)
 game()
