@@ -4,7 +4,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 def help():
-    import test1
+    import burger_rush
     #this creates a window 600 pixels wide by 400 pixels high
     window2 = pygame.display.set_mode((600, 400))
     
@@ -27,7 +27,7 @@ def help():
            if event.type == pygame.MOUSEBUTTONDOWN:
                #if you click back button, it goes to the game
                if 350 > mouse[0] > 200 and 275 > mouse[1] > 225:
-                   test1.main()
+                   burger_rush.main()
                #if you click quit button, it exits the program
                if 350 > mouse[0] > 200 and 375 > mouse[1] > 325:
                    pygame.quit()

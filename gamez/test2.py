@@ -8,7 +8,7 @@ import random
 def game():
     counter = 0
     #importing the game screen
-    import test1
+    import burger_rush
     #this creates a window 600 pixels wide by 400 pixels high
     window1 = pygame.display.set_mode((600, 400))
 
@@ -94,7 +94,7 @@ def game():
                #gets the current position of the mouse on the screen
                mouse1 = pygame.mouse.get_pos()
                if 590 > mouse[0] > 440 and 400 > mouse[1] > 350:
-                   test1.main()
+                   burger_rush.main()
                    
         #this gets the current position of the mouse
         mouse = pygame.mouse.get_pos()

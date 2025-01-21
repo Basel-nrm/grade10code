@@ -15,7 +15,7 @@ def game():
     pygame.display.set_caption("Burger Rush")
     
     import game_over
-    import test1
+    import burger_rush
     #loads the fat guy image & starting position of image
     fatguy = pygame.image.load("pygame_example/fatguy.png")
     
@@ -141,7 +141,7 @@ def game():
                #gets the current position of the mouse on the screen
                mouse1 = pygame.mouse.get_pos()
                if 590 > mouse[0] > 440 and 400 > mouse[1] > 350:
-                   test1.main()
+                   burger_rush.main()
                    
         # this gets the current position of the mouse
         mouse = pygame.mouse.get_pos()

@@ -11,8 +11,8 @@ def main(score: int):
     #sets the caption in the left cover of the window 
     pygame.display.set_caption("Game Over")
 
-    import test1
-    import test2
+    import burger_rush
+    import game_screen
 
     #loads the background image
     bg = pygame.image.load("pygame_example/background2.jpg")
@@ -45,11 +45,11 @@ def main(score: int):
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     #if you click play again button, it goes to the game
                     if 350 > mouse[0] > 200 and 175 > mouse[1] > 125:
-                        test2.game()
+                        game_screen.game()
                         sys.exit()
                     #if you click main menu button, it goes to the main menu
                     if 350 > mouse[0] > 200 and 275 > mouse[1] > 225:
-                        test1.main()
+                        burger_rush.main()
                         sys.exit()
                     #if you click quit button, it exits the program
                     if 350 > mouse[0] > 200 and 375 > mouse[1] > 325:

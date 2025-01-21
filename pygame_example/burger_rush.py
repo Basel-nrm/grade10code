@@ -1,20 +1,16 @@
 import pygame
 import sys
-import test2
-import test3
+import game_screen
+import  help_screen
 pygame.init()
 '''
 Name: Basel Mabroukeh
 Date: 
 Description:
-Resources: Stack Overflow, my dad 
+Resources: , my dad 
 '''
-# TODO: make character have the ability to jump
-# TODO: make garbage drop at the same time as the burger but faster than medkit
-# TODO: make score, play again button, main menu button, and help button pop up on another screen when you lose
-# TODO: make the lives into heart images
 # TODO: add sound to when burger, medkit, and garbage are collected and when you lose a life
-
+# TODO: go over the comments and write the description and date for program
 def main():
 
     #this creates a window 600 pixels wide by 400 pixels high
@@ -22,7 +18,7 @@ def main():
     clock = pygame.time.Clock()
     
     #sets the caption in the left cover of the window
-    pygame.display.set_caption("menu")
+    pygame.display.set_caption("Burger Rush")
 
     #loads the background image
     bg = pygame.image.load("pygame_example/background4.png")
@@ -48,11 +44,11 @@ def main():
            if event.type == pygame.MOUSEBUTTONDOWN:
                #if you click play button, it goes to the game
                if 350 > mouse[0] > 200 and 175 > mouse[1] > 125:
-                   test2.game()
+                   game_screen.game()
                    sys.exit()
                #if you click help button, it goes to the game
                if 350 > mouse[0] > 200 and 275 > mouse[1] > 225:
-                   test3.help()
+                   help_screen.help()
                    sys.exit()
                #if you click quit button, it exits the program
                if 350 > mouse[0] > 200 and 375 > mouse[1] > 325:
