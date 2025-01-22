@@ -5,7 +5,8 @@ clock = pygame.time.Clock()
 import random
 
 def game():
-    counter = 0
+    burger_counter = 0
+    score_counter = 0
     life_counter = 3
     character_speed = 7
     #this creates a window 600 pixels wide by 400 pixels high
@@ -28,27 +29,14 @@ def game():
     #initial position of the broccoli
     y2 = 0
     x2 = random.randint(30, 570)
-    #initial position of the asteroid
-    y3 = 0
-    x3 = random.randint(30, 570)
 
     #loads the burger and medkit image 
     broccoli = pygame.image.load("pygame_example/broccoli_scaled_nobkg.png")
     burger = pygame.image.load("pygame_example/burger.png")
-    asteroid = pygame.image.load("pygame_example/asteroid.png")
-    """
-    fatguy_rect = fatguy.get_rect()
-    burger_rect = burger.get_rect()
-    broccoli_rect = broccoli.get_rect()
-    asteroid_rect = asteroid.get_rect()
-    """
+    
     #the fat guy starts not moving
     to_right = False
     to_left = False
-    '''
-    to_up = False
-    to_down = False
-    '''
 
     while True:
         #loads the background image
@@ -56,7 +44,7 @@ def game():
         window1.blit(bg, (0, 0))
         #score
         font1 = pygame.font.SysFont("Times New Roman", 30)
-        text1 = font1.render("Score: "+ str(counter), True, (36, 38, 37), (255, 155, 255))
+        text1 = font1.render("Score: "+ str(score_counter), True, (36, 38, 37), (255, 155, 255))
         window1.blit(text1,(10, 5))
         #lives
         font1 = pygame.font.SysFont("Times New Roman", 30)
@@ -67,25 +55,21 @@ def game():
         fatguy_surface = pygame.Rect(x+10, y, fatguy.get_width()-30, fatguy.get_height())
         burger_surface = pygame.Rect(x1, y1, burger.get_width(), burger.get_height())
         broccoli_surface = pygame.Rect(x2, y2, broccoli.get_width(), broccoli.get_height())
-        asteroid_surface = pygame.Rect(x3, y3, asteroid.get_width(), asteroid.get_height())
         #returns true if the 2 rectangles overlap with each other
         if fatguy_surface.colliderect(burger_surface):
             y1 = 0
             x1 = random.randint(30, 570)
-            counter += 1
-            character_speed -= 1 if counter % 2 == 0 else 0 
+            score_counter += 1
+            if burger_counter < 5:
+                burger_counter += 1
+            else:
+                burger_counter = 0
+                character_speed -= 1 
         if fatguy_surface.colliderect(broccoli_surface):
             y2 = 0
             x2 = random.randint(30, 570)
             if life_counter < 3: life_counter += 1
-            character_speed += 1 if counter % 2 == 0 else 0 
-        if fatguy_surface.colliderect(asteroid_surface):
-            y3 = 0
-            x3 = random.randint(30, 570)
-            life_counter -= 1
-            if life_counter <= 0: 
-                pygame.time.wait(1000)
-                game_over.main(counter)
+            character_speed += 1 if character_speed < 9 else 0 
 
         #if the burger reaches the ground, the player loses a life and the burger drops from the top again
         if y1 == 400:
@@ -94,18 +78,13 @@ def game():
             life_counter -= 1
             if life_counter <= 0: 
                 pygame.time.wait(1000)
-                game_over.main(counter)
+                game_over.main(score_counter)
         y1 += 5
         #if the broccoli reaches the ground, it drops from the top again
         if y2 == 400:
             y2 = 0
             x2 = random.randint(30, 570)
         y2 += 8
-        #if the asteroid reaches the ground, it drops from the top again
-        if y3 == 400:
-            y3 = 0
-            x3 = random.randint(30, 570)
-        y3 += 6
 
         for event in pygame.event.get():
             #controls for when pressing the key down
@@ -114,12 +93,7 @@ def game():
                     to_left = True
                 if event.key == pygame.K_RIGHT:
                     to_right = True
-                '''
-                if event.key == pygame.K_UP:
-                    to_up = True
-                if event.key == pygame.K_DOWN:
-                    to_down = True
-                '''
+
             #controls for when no key is pressed
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
@@ -173,20 +147,16 @@ def game():
             x += character_speed
         if to_left:
             x -= character_speed
-        # if up or down arrow is pressed, moves fat guy 2 pixels up or down
-        '''
-        if to_down:
-            y += 5
-        if to_up:
-            y -= 5
-        '''
+       
         # prints everything to the window
         window1.blit(text2, (440, 355))
         window1.blit(fatguy, (x, y))
         window1.blit(burger, (x1, y1))
         # makes the broccoli stop appearing if the player has 3 lives
-        if life_counter < 3: window1.blit(broccoli, (x2, y2))
-        window1.blit(asteroid, (x3, y3))
+        if life_counter < 3: 
+            window1.blit(broccoli, (x2, y2))
+        else:
+            y2 = 0  # do magic to make broccoli disapeear
         pygame.display.flip()
         clock.tick(60)
 game()
