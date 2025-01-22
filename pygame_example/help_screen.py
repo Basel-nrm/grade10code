@@ -16,6 +16,7 @@ def help():
     bg = pygame.image.load("pygame_example/help_bkg.jpg")
     window2.blit(bg, (0, 0))
 
+    #creates the title for the window
     font1 = pygame.font.SysFont("Arial", 60, bold=True)
     text1 = font1.render("How To Play", True, (36, 38, 37))
     window2.blit(text1,(130, 5))
@@ -48,7 +49,7 @@ def help():
             font3 = pygame.font.SysFont("Times New Roman", 30)
             text3 = font3.render("Back", True, (235, 12, 45))
 
-        #if you hover over the quit button it turns green, otherwise it is grey
+        #if you hover over the quit button it turns light blue, otherwise it is grey
         if 575 > mouse[0] > 425 and 375 > mouse[1] > 325:
             quit_button = pygame.draw.rect(window2, (141, 183, 247), [425, 325, 150, 50])
             font4 = pygame.font.SysFont("Times New Roman", 30)
@@ -58,7 +59,7 @@ def help():
             font4 = pygame.font.SysFont("Times New Roman", 30)
             text4 = font4.render("Quit", True, (235, 12, 45))
         
-
+        #prints everything to the window
         window2.blit(text3, (65, 330))
         window2.blit(text4, (475, 330))
         pygame.display.flip()

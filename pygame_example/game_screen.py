@@ -5,6 +5,7 @@ clock = pygame.time.Clock()
 import random
 
 def game():
+    #creates counters to keep track of certain factors of the game
     burger_counter = 0
     score_counter = 0
     life_counter = 3
@@ -30,7 +31,7 @@ def game():
     y2 = 0
     x2 = random.randint(30, 570)
 
-    #loads the burger and medkit image 
+    #loads the burger and broccoli image 
     broccoli = pygame.image.load("pygame_example/broccoli_scaled_nobkg.png")
     burger = pygame.image.load("pygame_example/burger.png")
     
@@ -51,11 +52,11 @@ def game():
         text1 = font1.render("Lives: "+ str(life_counter), True, (36, 38, 37), (255, 155, 255))
         window1.blit(text1,(485, 5))
 
-        #gets the rectangle around the fat, burger, and medkit
+        #gets the rectangle around the fat, burger, and broccoli
         fatguy_surface = pygame.Rect(x+10, y, fatguy.get_width()-30, fatguy.get_height())
         burger_surface = pygame.Rect(x1, y1, burger.get_width(), burger.get_height())
         broccoli_surface = pygame.Rect(x2, y2, broccoli.get_width(), broccoli.get_height())
-        #returns true if the 2 rectangles overlap with each other
+        #returns true if the 2 rectangles overlap with each other and decreases the speed of the character if 5 burgers are collected
         if fatguy_surface.colliderect(burger_surface):
             y1 = 0
             x1 = random.randint(30, 570)
@@ -65,6 +66,7 @@ def game():
             else:
                 burger_counter = 0
                 character_speed -= 1 
+        #returns true if the 2 rectangles overlap with each other and increases the speed of the character if 1 broccoli is collected
         if fatguy_surface.colliderect(broccoli_surface):
             y2 = 0
             x2 = random.randint(30, 570)
@@ -156,7 +158,7 @@ def game():
         if life_counter < 3: 
             window1.blit(broccoli, (x2, y2))
         else:
-            y2 = 0  # do magic to make broccoli disapeear
+            y2 = 0  # makes the broccoli not appear when it shouldn't
         pygame.display.flip()
         clock.tick(60)
 game()

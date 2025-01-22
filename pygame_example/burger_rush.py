@@ -5,12 +5,16 @@ import  help_screen
 pygame.init()
 '''
 Name: Basel Mabroukeh
-Date: 
-Description:
-Resources: , my dad 
+Date: 1/21/2025
+Description: This program creates a game in which there is a character. The objective of this game is to collect burgers with the character
+to increase your score. You start with three lives although you can lose a life if you let the burger hit the ground. 
+The more burgers you eat, the slower you get. You can increase your speed and your lives by collecting broccoli which appears
+when you drop a burger. If you have 0 lives remaining, the game is over.
+Resources: 
+    pygame library documentation https://www.pygame.org/docs/
+    my dad Nizar Mabroukeh, https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=nizar+mabroukeh&btnG=
+    Stack overflow, https://stackoverflow.com/ 
 '''
-# TODO: add sound to when burger, medkit, and garbage are collected and when you lose a life
-# TODO: go over the comments and write the description and date for program
 def main():
 
     #this creates a window 600 pixels wide by 400 pixels high
@@ -46,7 +50,7 @@ def main():
                if 350 > mouse[0] > 200 and 175 > mouse[1] > 125:
                    game_screen.game()
                    sys.exit()
-               #if you click help button, it goes to the game
+               #if you click help button, it goes to the help screen
                if 350 > mouse[0] > 200 and 275 > mouse[1] > 225:
                    help_screen.help()
                    sys.exit()
@@ -62,7 +66,7 @@ def main():
                if 575 > mouse[0] > 425 and 410 > mouse[1] > 310:
                    pygame.mixer.music.pause()
                    
-        #if you hover over the play button it turns green, otherwise it is grey
+        #if you hover over the play button it turns light blue, otherwise it is grey
         if 350 > mouse[0] > 200 and 175 > mouse[1] > 125:
             play_button = pygame.draw.rect(window, (141, 183, 247), [200, 125, 150, 50])
             font2 = pygame.font.SysFont("Times New Roman", 30)
@@ -72,7 +76,7 @@ def main():
             font2 = pygame.font.SysFont("Times New Roman", 30)
             text2 = font2.render("Play", True, (235, 12, 45))
 
-        #if you hover over the help button it turns green, otherwise it is grey
+        #if you hover over the help button it turns light blue, otherwise it is grey
         if 350 > mouse[0] > 200 and 275 > mouse[1] > 225:
             change_title = pygame.draw.rect(window,(141, 183, 247) , [200, 225, 150, 50])
             font3 = pygame.font.SysFont("Times New Roman", 30)
@@ -82,7 +86,7 @@ def main():
             font3 = pygame.font.SysFont("Times New Roman", 30)
             text3 = font3.render("Help", True, (235, 12, 45))
 
-        #if you hover over the quit button it turns green, otherwise it is grey
+        #if you hover over the quit button it turns light blue, otherwise it is grey
         if 350 > mouse[0] > 200 and 375 > mouse[1] > 325:
             quit_button = pygame.draw.rect(window, (141, 183, 247), [200, 325, 150, 50])
             font4 = pygame.font.SysFont("Times New Roman", 30)
@@ -92,7 +96,7 @@ def main():
             font4 = pygame.font.SysFont("Times New Roman", 30)
             text4 = font4.render("Quit", True, (235, 12, 45))
 
-        #if you hover over the play button it turns green, otherwise it is grey
+        #if you hover over the play music button it turns light blue, otherwise it is grey
         if 575 > mouse[0] > 425 and 300 > mouse[1] > 250:
             play_button = pygame.draw.rect(window, (141, 183, 247), [425, 250, 150, 50])
             font5 = pygame.font.SysFont("Times New Roman", 30)
@@ -102,7 +106,7 @@ def main():
             font5 = pygame.font.SysFont("Times New Roman", 30)
             text5 = font5.render("Play Music", True, (235, 12, 45))
 
-        #if you hover over the pause button it turns green, otherwise it is grey
+        #if you hover over the pause music button it turns light blue, otherwise it is grey
         if 575 > mouse[0] > 425 and 410 > mouse[1] > 310:
             pause_button = pygame.draw.rect(window, (141, 183, 247), [425, 310, 150, 50])
             font6 = pygame.font.SysFont("Times New Roman", 28)

@@ -1,7 +1,7 @@
 '''
 11/21/2024
 Basel Mabroukeh
-This is a rock, paper, scissors, game program that asks the user if the want to play against the computer or if they want to play
+This is a rock, paper, scissors, game program that asks the user if they want to play against the computer or if they want to play
 against another player. It then aks the user to input 1 for rock, 2 for paper, and 3 for scissors and then compares the player's answer
 to the computer or other player's answer and determines who the winner is while printing out both of the player's information.
 '''

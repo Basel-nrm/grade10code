@@ -56,7 +56,7 @@ def main(score: int):
                         pygame.quit()
                         sys.exit()
                         
-            #if you hover over the play button it turns green, otherwise it is grey
+            #if you hover over the play button it turns light blue, otherwise it is grey
             if 350 > mouse[0] > 200 and 175 > mouse[1] > 125:
                 play_button = pygame.draw.rect(window2, (141, 183, 247), [200, 125, 150, 50])
                 font2 = pygame.font.SysFont("Times New Roman", 30)
@@ -66,7 +66,7 @@ def main(score: int):
                 font2 = pygame.font.SysFont("Times New Roman", 30)
                 text2 = font2.render("Play Again", True, (235, 12, 45))
 
-            #if you hover over the main menu button it turns green, otherwise it is grey
+            #if you hover over the main menu button it turns light blue, otherwise it is grey
             if 350 > mouse[0] > 200 and 275 > mouse[1] > 225:
                 change_title = pygame.draw.rect(window2,(141, 183, 247) , [200, 225, 150, 50])
                 font3 = pygame.font.SysFont("Times New Roman", 30)
@@ -76,7 +76,7 @@ def main(score: int):
                 font3 = pygame.font.SysFont("Times New Roman", 30)
                 text3 = font3.render("Main Menu", True, (235, 12, 45))
 
-            #if you hover over the quit button it turns green, otherwise it is grey
+            #if you hover over the quit button it turns light blue, otherwise it is grey
             if 350 > mouse[0] > 200 and 375 > mouse[1] > 325:
                 quit_button = pygame.draw.rect(window2, (141, 183, 247), [200, 325, 150, 50])
                 font4 = pygame.font.SysFont("Times New Roman", 30)
@@ -86,6 +86,7 @@ def main(score: int):
                 font4 = pygame.font.SysFont("Times New Roman", 30)
                 text4 = font4.render("Quit", True, (235, 12, 45))
             
+            #prints everything to the window
             window2.blit(text2, (210, 135))
             window2.blit(text3, (205, 235))
             window2.blit(text4, (250, 335))
